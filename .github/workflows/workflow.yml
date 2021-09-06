@@ -14,3 +14,14 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: hw.tex
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Homework
+          path: ./hw.pdf
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ./hw.pdf
